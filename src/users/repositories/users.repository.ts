@@ -22,13 +22,19 @@ export class UsersRepository {
     return this.userRepository.save(user);
   }
 
-  async findAll(filter: any) {
-    return this.userRepository.find(filter);
+  async findAll(filter: any, options?: any) {
+    return this.userRepository.find({ filter, ...options });
   }
 
-  async findOne(id: number) {
-    const user = this.userRepository.findOne({ where: { id } });
+  async findOne(id: number, options?: any) {
+    const user = this.userRepository.findOne({ where: { id }, ...options });
     if (!user) throw new NotFoundException(`User ID ${id} not found`);
+    return user;
+  }
+
+  async findOneByEmail(email: string, options?: any) {
+    const user = this.userRepository.findOne({ where: { email }, ...options });
+    if (!user) throw new NotFoundException(`User email ${email} not found`);
     return user;
   }
 
