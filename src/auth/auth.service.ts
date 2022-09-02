@@ -19,9 +19,10 @@ export class AuthService {
     if (!match) throw new NotFoundException('User not found');
 
     const jwtPayload: JwtPayload = { userId: user.id.toString() };
-    return sign(jwtPayload, process.env.JWT_SECRET, {
+    const token = sign(jwtPayload, process.env.JWT_SECRET, {
       expiresIn: process.env.JWT_EXPIRATION,
     });
+    return { id: user.id, name: user.name, token };
   }
 
   async validateUser(jwtPayload: JwtPayload) {
