@@ -1,38 +1,31 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Sale } from '../../sales/entities/sale.entity';
+import { Product } from '../../products/entities/product.entity';
+import { User } from '../../users/entities/user.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
   JoinTable,
-  OneToMany,
+  ManyToMany,
+  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 
 @Entity()
-export class User {
+export class Sale {
   @ApiProperty()
   @PrimaryGeneratedColumn({ unsigned: true })
   id: number;
 
-  @ApiProperty()
-  @Column()
-  name: string;
-
-  @ApiProperty()
-  @Column({ unique: true })
-  email: string;
-
-  @ApiProperty()
-  @Column({ select: false })
-  password: string;
+  @ManyToOne(() => User, (user: User) => user.sales)
+  user: User;
 
   @JoinTable()
-  @OneToMany(() => Sale, (sale: Sale) => sale.user, {
+  @ManyToMany(() => Product, (product: Product) => product.sales, {
     cascade: true,
   })
-  sales: Sale[];
+  products: Product[];
 
   @ApiProperty()
   @Column()

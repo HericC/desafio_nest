@@ -15,6 +15,7 @@ const mockUserDTO: User = {
   password: '123123123',
   createdAt: new Date(),
   updatedAt: new Date(),
+  sales: [],
 };
 
 const mockUser = {
@@ -71,7 +72,7 @@ describe('UsersController (e2e)', () => {
         UsersModule,
         TypeOrmModule.forRoot({
           type: 'sqlite',
-          database: 'SQLite_DB_e2e',
+          database: 'databases/SQLite_DB_e2e',
           dropSchema: true,
           autoLoadEntities: true,
           synchronize: true,

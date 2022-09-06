@@ -23,7 +23,7 @@ export class UsersRepository {
   }
 
   async findAll(filter: any, options?: any) {
-    return this.userRepository.find({ filter, ...options });
+    return this.userRepository.find({ ...filter, ...options });
   }
 
   async findOne(id: number, options?: any) {

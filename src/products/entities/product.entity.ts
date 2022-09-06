@@ -4,34 +4,30 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-  JoinTable,
-  OneToMany,
+  ManyToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 
 @Entity()
-export class User {
+export class Product {
   @ApiProperty()
   @PrimaryGeneratedColumn({ unsigned: true })
   id: number;
+
+  @ApiProperty()
+  @Column({ unique: true })
+  code: string;
 
   @ApiProperty()
   @Column()
   name: string;
 
   @ApiProperty()
-  @Column({ unique: true })
-  email: string;
+  @Column()
+  price: number;
 
-  @ApiProperty()
-  @Column({ select: false })
-  password: string;
-
-  @JoinTable()
-  @OneToMany(() => Sale, (sale: Sale) => sale.user, {
-    cascade: true,
-  })
+  @ManyToMany(() => Sale, (sale: Sale) => sale.products)
   sales: Sale[];
 
   @ApiProperty()

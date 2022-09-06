@@ -5,18 +5,22 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
+import { ProductsModule } from './products/products.module';
+import { SalesModule } from './sales/sales.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
       type: 'sqlite',
-      database: 'SQLite_DB',
+      database: 'databases/SQLite_DB',
       autoLoadEntities: true,
       synchronize: true,
     }),
     AuthModule,
     UsersModule,
+    ProductsModule,
+    SalesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

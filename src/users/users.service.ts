@@ -12,11 +12,11 @@ export class UsersService {
   }
 
   async findAll(filter = {}) {
-    return this.usersRepository.findAll(filter);
+    return this.usersRepository.findAll(filter, { relations: { sales: true } });
   }
 
   async findOne(id: number) {
-    return this.usersRepository.findOne(id);
+    return this.usersRepository.findOne(id, { relations: { sales: true } });
   }
 
   async update(id: number, updateUserDto: UpdateUserDto) {
