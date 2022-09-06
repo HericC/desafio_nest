@@ -72,7 +72,7 @@ describe('UsersController (e2e)', () => {
         UsersModule,
         TypeOrmModule.forRoot({
           type: 'sqlite',
-          database: 'databases/SQLite_DB_e2e',
+          database: 'databases/SQLite_DB_e2e.sqlite',
           dropSchema: true,
           autoLoadEntities: true,
           synchronize: true,

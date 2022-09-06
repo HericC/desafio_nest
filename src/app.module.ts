@@ -13,7 +13,7 @@ import { SalesModule } from './sales/sales.module';
     ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
       type: 'sqlite',
-      database: 'databases/SQLite_DB',
+      database: 'databases/SQLite_DB.sqlite',
       autoLoadEntities: true,
       synchronize: true,
     }),
