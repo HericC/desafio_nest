@@ -19,6 +19,7 @@ async function bootstrap() {
     .setTitle('Documentação')
     .setDescription('Documentação da API do Desafio NestJS BlockHub')
     .setVersion('1.0')
+    .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('doc', app, document);
